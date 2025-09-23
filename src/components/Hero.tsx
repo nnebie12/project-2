@@ -1,5 +1,5 @@
 import { Github, Mail, MapPin } from 'lucide-react';
-import profilePic from "../assets/diane.jpeg";
+import profilePic from "../assets/Diane.jpeg";
 
 interface HeroProps {
   darkMode: boolean;
