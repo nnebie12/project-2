@@ -1,4 +1,4 @@
-import { Download, Github, Mail, MapPin } from 'lucide-react';
+import { Github, Mail, MapPin } from 'lucide-react';
 import profilePic from "../assets/diane.jpeg";
 
 interface HeroProps {
@@ -96,9 +96,9 @@ export default function Hero({ darkMode }: HeroProps) {
               >
                 <Github size={24} />
               </a>
-              
-              <a
-                href="mailto:nnebiekassi12@gmail.com"
+
+              <button
+                onClick={() => scrollToSection('contact')}
                 className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
                   darkMode 
                     ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
@@ -106,14 +106,6 @@ export default function Hero({ darkMode }: HeroProps) {
                 }`}
               >
                 <Mail size={24} />
-              </a>
-
-              <button className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
-                darkMode 
-                  ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-              }`}>
-                <Download size={24} />
               </button>
             </div>
           </div>

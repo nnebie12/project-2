@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Clock, Target, Users } from 'lucide-react';
+import { Award, Clock, Target } from 'lucide-react';
 
 interface AboutProps {
   darkMode: boolean;
@@ -10,7 +10,6 @@ export default function About({ darkMode }: AboutProps) {
     { icon: Clock, label: 'Années d\'expérience', value: '3+' },
     { icon: Target, label: 'Projets réalisés', value: '15+' },
     { icon: Award, label: 'Certifications', value: '3' },
-    { icon: Users, label: 'Clients satisfaits', value: '10+' }
   ];
 
   return (
@@ -99,13 +98,13 @@ export default function About({ darkMode }: AboutProps) {
               <h4 className={`text-lg font-semibold mb-2 ${
                 darkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                OpenClassrooms
+                ITIC Paris
               </h4>
               <p className="text-blue-600 font-medium mb-2">
-                Développeuse Web - BAC+2
+                Mastère Expert Lead Dev Full Stack - BAC+5
               </p>
               <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                2022 - 2023
+                2024 - 2026
               </p>
             </div>
 
@@ -131,13 +130,13 @@ export default function About({ darkMode }: AboutProps) {
               <h4 className={`text-lg font-semibold mb-2 ${
                 darkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                ITIC Paris
+                OpenClassrooms
               </h4>
               <p className="text-blue-600 font-medium mb-2">
-                Mastère Expert Lead Dev Full Stack - BAC+5
+                Développeuse Web - BAC+2
               </p>
               <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                2024 - 2026
+                2022 - 2023
               </p>
             </div>
           </div>

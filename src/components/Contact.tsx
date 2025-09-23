@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Github, Linkedin, MapPin, Send } from 'lucide-react';
 import React, { useState } from 'react';
 
 interface ContactProps {
@@ -14,11 +14,10 @@ export default function Contact({ darkMode }: ContactProps) {
   });
 
   const handleSubmit = (e: React.FormEvent) => {
+    // Netlify will handle the form if deployed with data-netlify="true".
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
     setFormData({ name: '', email: '', subject: '', message: '' });
+    alert('Message envoyé (via Netlify)');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -40,12 +39,12 @@ export default function Contact({ darkMode }: ContactProps) {
           <p className={`text-lg max-w-3xl mx-auto ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Prête à collaborer sur votre prochain projet ? N'hésitez pas à me contacter !
+            Prête à collaborer sur votre prochain projet ? Utilisez le formulaire sécurisé ci-contre.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+          {/* Contact Info (minimal public) */}
           <div className="space-y-8">
             <div>
               <h3 className={`text-2xl font-bold mb-6 ${
@@ -53,41 +52,10 @@ export default function Contact({ darkMode }: ContactProps) {
               }`}>
                 Informations de contact
               </h3>
-              
+
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-blue-600 rounded-lg">
-                    <Mail size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                      Email
-                    </p>
-                    <a 
-                      href="mailto:nnebiekassi12@gmail.com"
-                      className="text-blue-600 hover:text-blue-700 transition-colors"
-                    >
-                      nnebiekassi12@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-green-600 rounded-lg">
-                    <Phone size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                      Téléphone
-                    </p>
-                    <p className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                      0668591465
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-orange-600 rounded-lg">
                     <MapPin size={20} className="text-white" />
                   </div>
                   <div>
@@ -99,48 +67,46 @@ export default function Contact({ darkMode }: ContactProps) {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* Social Links */}
-            <div>
-              <h4 className={`text-lg font-semibold mb-4 ${
-                darkMode ? 'text-white' : 'text-gray-900'
-              }`}>
-                Suivez-moi
-              </h4>
-              
-              <div className="flex gap-4">
-                <a
-                  href="https://github.com/nnebie12"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
-                    darkMode 
-                      ? 'bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-600' 
-                      : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                  }`}
-                >
-                  <Github size={24} />
-                </a>
-                
-                <a
-                  href="https://www.linkedin.com/in/nnebie-kassi/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
-                    darkMode 
-                      ? 'bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-600' 
-                      : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                  }`}
-                >
-                  <Linkedin size={24} />
-                </a>
+                <div>
+                  <h4 className={`text-lg font-semibold mb-4 ${
+                    darkMode ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    Suivez-moi
+                  </h4>
+                  <div className="flex gap-4">
+                    <a
+                      href="https://github.com/nnebie12"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
+                        darkMode 
+                          ? 'bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-600' 
+                          : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Github size={24} />
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/in/nnebie-kassi/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 rounded-lg transition-all duration-200 hover:scale-110 ${
+                        darkMode 
+                          ? 'bg-gray-700 text-gray-300 hover:text-white hover:bg-gray-600' 
+                          : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Linkedin size={24} />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form (Netlify) */}
           <div className={`p-8 rounded-xl ${
             darkMode ? 'bg-gray-700' : 'bg-gray-50'
           }`}>
@@ -149,18 +115,25 @@ export default function Contact({ darkMode }: ContactProps) {
             }`}>
               Envoyez-moi un message
             </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>Ne pas remplir <input name="bot-field" onChange={() => {}} /></label>
+              </p>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label 
-                    htmlFor="name" 
-                    className={`block text-sm font-medium mb-2 ${
-                      darkMode ? 'text-gray-200' : 'text-gray-700'
-                    }`}
-                  >
-                    Nom complet
-                  </label>
+                  <label htmlFor="name" className={`block text-sm font-medium mb-2 ${
+                    darkMode ? 'text-gray-200' : 'text-gray-700'
+                  }`}>Nom complet</label>
                   <input
                     type="text"
                     id="name"
@@ -169,23 +142,16 @@ export default function Contact({ darkMode }: ContactProps) {
                     onChange={handleChange}
                     required
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      darkMode 
-                        ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                      darkMode ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                     }`}
                     placeholder="Votre nom"
                   />
                 </div>
-                
+
                 <div>
-                  <label 
-                    htmlFor="email" 
-                    className={`block text-sm font-medium mb-2 ${
-                      darkMode ? 'text-gray-200' : 'text-gray-700'
-                    }`}
-                  >
-                    Email
-                  </label>
+                  <label htmlFor="email" className={`block text-sm font-medium mb-2 ${
+                    darkMode ? 'text-gray-200' : 'text-gray-700'
+                  }`}>Email</label>
                   <input
                     type="email"
                     id="email"
@@ -194,9 +160,7 @@ export default function Contact({ darkMode }: ContactProps) {
                     onChange={handleChange}
                     required
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                      darkMode 
-                        ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                      darkMode ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                     }`}
                     placeholder="votre@email.com"
                   />
@@ -204,14 +168,9 @@ export default function Contact({ darkMode }: ContactProps) {
               </div>
 
               <div>
-                <label 
-                  htmlFor="subject" 
-                  className={`block text-sm font-medium mb-2 ${
-                    darkMode ? 'text-gray-200' : 'text-gray-700'
-                  }`}
-                >
-                  Sujet
-                </label>
+                <label htmlFor="subject" className={`block text-sm font-medium mb-2 ${
+                  darkMode ? 'text-gray-200' : 'text-gray-700'
+                }`}>Sujet</label>
                 <input
                   type="text"
                   id="subject"
@@ -220,23 +179,16 @@ export default function Contact({ darkMode }: ContactProps) {
                   onChange={handleChange}
                   required
                   className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent ${
-                    darkMode 
-                      ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    darkMode ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                   }`}
                   placeholder="Sujet de votre message"
                 />
               </div>
 
               <div>
-                <label 
-                  htmlFor="message" 
-                  className={`block text-sm font-medium mb-2 ${
-                    darkMode ? 'text-gray-200' : 'text-gray-700'
-                  }`}
-                >
-                  Message
-                </label>
+                <label htmlFor="message" className={`block text-sm font-medium mb-2 ${
+                  darkMode ? 'text-gray-200' : 'text-gray-700'
+                }`}>Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -245,9 +197,7 @@ export default function Contact({ darkMode }: ContactProps) {
                   required
                   rows={6}
                   className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent resize-none ${
-                    darkMode 
-                      ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                    darkMode ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                   }`}
                   placeholder="Votre message..."
                 ></textarea>
