@@ -12,12 +12,42 @@ export default function Contact({ darkMode }: ContactProps) {
     subject: '',
     message: ''
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    // Netlify will handle the form if deployed with data-netlify="true".
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    alert('Message envoyé (via Netlify)');
+    setStatus('sending');
+
+    const payload = {
+      'form-name': 'contact',
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      'bot-field': ''
+    };
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode(payload)
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -208,8 +238,16 @@ export default function Contact({ darkMode }: ContactProps) {
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
                 <Send size={20} />
-                Envoyer le message
+                {status === 'sending' ? 'Envoi...' : 'Envoyer le message'}
               </button>
+
+              {status === 'success' && (
+                <p className="text-green-500 mt-4">Message envoyé — je vous répondrai sous peu.</p>
+              )}
+
+              {status === 'error' && (
+                <p className="text-red-500 mt-4">Erreur lors de l'envoi. Veuillez réessayer plus tard.</p>
+              )}
             </form>
           </div>
         </div>
