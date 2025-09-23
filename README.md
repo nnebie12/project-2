@@ -1,4 +1,4 @@
-# Portfolio - Diane KASSI
+# Mon Portfolio 
 
 Site portfolio personnel construit avec Vite + React + TypeScript et Tailwind CSS.
 
@@ -89,10 +89,10 @@ Remarque : l'email et le numéro personnel ont été retirés du front-end pour 
 - `lucide-react` est utilisé pour les icônes. Vite exclut cette dépendance dans `optimizeDeps.exclude` (dans `vite.config.ts`).
 
 ## Recommandations / améliorations possibles
-- Ajouter un fichier `.env.example` pour documenter les variables d'environnement (ex : SUPABASE_URL, SUPABASE_KEY).
+- Ajouter un fichier `.env.example` pour documenter les variables d'environnement.
 - Mettre en place des tests unitaires (Vitest) si besoin.
 - Ajouter un CI (GitHub Actions) pour lint/build/test automatique.
-- Optimiser les images (ex: compression, lazy-loading) et vérifier le nom du fichier `Diane.jpeg` vs `diane.jpeg` (cohérence casse sur systèmes sensibles).
+- Optimiser les images (ex: compression, lazy-loading) et vérifier le nom du fichier `***.jpeg` vs `***.jpeg` (cohérence casse sur systèmes sensibles).
 
 ## Commands rapides
 ```bash
@@ -102,10 +102,5 @@ npm run build
 npm run preview
 npm run lint
 ```
-
-## Contact
-Pour modifications ou questions : `nnebiekassi12@gmail.com` (présent dans le composant Contact).
-
----
 
 
