@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -9,21 +10,13 @@ interface HeaderProps {
 export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
   const menuItems = [
-    { id: 'accueil', label: 'Accueil' },
-    { id: 'apropos', label: 'À propos' },
-    { id: 'experience', label: 'Expérience' },
-    { id: 'projets', label: 'Projets' },
-    { id: 'competences', label: 'Compétences' },
-    { id: 'contact', label: 'Contact' }
+    { to: '/', label: 'Accueil' },
+    { to: '/a-propos', label: 'À propos' },
+    { to: '/experience', label: 'Expérience' },
+    { to: '/projets', label: 'Projets' },
+    { to: '/competences', label: 'Compétences' },
+    { to: '/contact', label: 'Contact' }
   ];
 
   return (
@@ -34,7 +27,7 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
         <div className="flex justify-between items-center py-4">
           <div 
             className="text-xl font-bold cursor-pointer"
-            onClick={() => scrollToSection('accueil')}
+            onClick={() => { window.location.href = '/'; setIsMenuOpen(false); }}
           >
             <span className="text-blue-600">Diane</span>
             <span className={darkMode ? 'text-white' : 'text-gray-900'}> KASSI</span>
@@ -43,15 +36,16 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-blue-600 ${
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }: { isActive: boolean }) => `text-sm font-medium transition-colors duration-200 hover:text-blue-600 ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
-                }`}
+                } ${isActive ? 'text-blue-600' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
-              </button>
+              </NavLink>
             ))}
             <button
               onClick={toggleDarkMode}
@@ -96,19 +90,20 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
             darkMode ? 'border-gray-700' : 'border-gray-200'
           }`}>
             <div className="pt-4 space-y-2">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
-                    darkMode 
-                      ? 'text-gray-300 hover:text-white hover:bg-gray-800' 
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+                {menuItems.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }: { isActive: boolean }) => `block w-full text-left px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                      darkMode 
+                        ? 'text-gray-300 hover:text-white hover:bg-gray-800' 
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    } ${isActive ? 'bg-blue-50 text-blue-600' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
             </div>
           </div>
         )}
