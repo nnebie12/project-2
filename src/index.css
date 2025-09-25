@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Small entrance animations used across the site */
+.fade-in-up {
+	transform: translateY(12px);
+	opacity: 0;
+	transition: transform 400ms cubic-bezier(.2,.8,.2,1), opacity 400ms ease-in-out;
+}
+.fade-in-up.is-visible {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.pulse {
+	transition: transform 400ms ease, box-shadow 400ms ease;
+}
+.pulse:hover {
+	transform: translateY(-4px) scale(1.02);
+}
+
+/* tooltip stylé pour SkillBadge */
+.relative .tooltip-text {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%) translateY(8px);
+	bottom: 100%;
+	white-space: nowrap;
+	padding: 6px 8px;
+	border-radius: 6px;
+	font-size: 12px;
+	background: rgba(17,24,39,0.95); /* gray-900 */
+	color: #fff;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 180ms ease, transform 180ms ease;
+	transform-origin: bottom center;
+	z-index: 40;
+}
+.relative:focus .tooltip-text,
+.relative:hover .tooltip-text {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+
+/* small helper: per-element cascade delay applied inline via style attribute */
+.cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.8,.2,1); }
+.cascade-item.is-visible { opacity: 1; transform: translateY(0); }
+

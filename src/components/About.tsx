@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import { Award, Clock, Target } from 'lucide-react';
 
 interface AboutProps {
@@ -12,16 +12,36 @@ export default function About({ darkMode }: AboutProps) {
     { icon: Award, label: 'Certifications', value: '3' },
   ];
 
+  const containerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    const els = containerRef.current?.querySelectorAll('.fade-in-up') || [];
+    els.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="apropos" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+    <section ref={containerRef} id="apropos" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 fade-in-up ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
             À propos de moi
           </h2>
-          <p className={`text-lg max-w-3xl mx-auto ${
+          <p className={`text-lg max-w-3xl mx-auto fade-in-up delay-100 ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
             Développeuse passionnée avec une solide expérience dans la création 
@@ -29,8 +49,8 @@ export default function About({ darkMode }: AboutProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="space-y-6 fade-in-up">
             <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Mon parcours
             </h3>
@@ -59,14 +79,14 @@ export default function About({ darkMode }: AboutProps) {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-xl text-center transition-all duration-300 hover:scale-105 ${
+                className={`p-6 rounded-xl text-center transition-all duration-300 pulse fade-in-up ${
                   darkMode 
                     ? 'bg-gray-700 hover:bg-gray-600' 
                     : 'bg-gray-50 hover:bg-gray-100'
                 }`}
               >
                 <div className="flex justify-center mb-4">
-                  <stat.icon size={32} className="text-blue-600" />
+                  <stat.icon size={32} className="text-blue-600 animate-pulse" />
                 </div>
                 <div className={`text-2xl font-bold mb-2 ${
                   darkMode ? 'text-white' : 'text-gray-900'
