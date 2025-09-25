@@ -14,9 +14,9 @@ export default function Header({ darkMode, toggleDarkMode }: HeaderProps) {
     { to: '/', label: 'Accueil' },
     { to: '/a-propos', label: 'À propos' },
     { to: '/experience', label: 'Expérience' },
-    { to: '/projets', label: 'Projets' },
+    //{ to: '/projets', label: 'Projets' },
     { to: '/competences', label: 'Compétences' },
-    { to: '/contact', label: 'Contact' }
+    //{ to: '/contact', label: 'Contact' }
   ];
 
   return (

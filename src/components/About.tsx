@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { Award, Clock, Target } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 interface AboutProps {
   darkMode: boolean;
